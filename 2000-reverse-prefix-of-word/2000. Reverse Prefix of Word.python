@@ -1,0 +1,19 @@
+class Solution(object):
+    def reversePrefix(self, word, ch):
+        letterIndex = 0
+        i = 0
+        while i < len(word) and word[i] != ch:
+            i+=1
+        if i != len(word) or word[i-1] == ch:
+            letterIndex = i
+        if letterIndex == 0:
+            return word
+        returnString = ""
+
+        for i in range(letterIndex):
+            returnString = word[i] + returnString
+
+        returnString = ch + returnString
+        print(returnString)
+        return returnString + word[letterIndex+1:]
+        
