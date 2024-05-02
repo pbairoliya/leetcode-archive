@@ -1,0 +1,40 @@
+class Solution(object):
+
+    def getPerm(self,combo,dictS,perm,s):
+        if len(combo) == len(s):
+            perm.append(combo)
+            return
+
+        for letter in dictS:
+            if dictS[letter] > 0:
+                newDict = dictS.copy()
+                newDict[letter] -=2
+                self.getPerm(letter + combo + letter, newDict, perm,s)
+    def generatePalindromes(self, s):
+        #check if palindrome can be made first 
+        letterMap = defaultdict(int)
+        for letter in s:
+            if letter in letterMap:
+                letterMap[letter] +=1
+            else:
+                letterMap[letter] = 1
+        
+        count = 0 
+        for key in letterMap:
+            count += letterMap[key] % 2
+        
+        if count >1:
+            return []
+
+        comb = ""
+        if count ==1 :
+            for key in letterMap:
+                if letterMap[key]%2 ==1 :
+                    comb = key
+                    letterMap[key] -=1
+        
+        permutations = []
+        self.getPerm(comb,letterMap,permutations,s)
+
+        return permutations
+        
