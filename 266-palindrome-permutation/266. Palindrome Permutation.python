@@ -1,0 +1,26 @@
+class Solution(object):
+    def canPermutePalindrome(self, s):
+        #create a dictionary of the frequency of each character in s 
+        letterMap = defaultdict(int)
+
+        for letter in s:
+            if letter in letterMap:
+                letterMap[letter] +=1
+            else:
+                letterMap[letter] = 1
+        #now check if each frequency of the map is modulo by 2 if its more than 0 add it up 
+        count = 0 
+        for key in letterMap:
+            count += letterMap[key]%2
+        #return true if the total count is less than 1  else false
+        if count <=1:
+            return True
+        else:
+            return False
+        
+
+        """
+        :type s: str
+        :rtype: bool
+        """
+        
