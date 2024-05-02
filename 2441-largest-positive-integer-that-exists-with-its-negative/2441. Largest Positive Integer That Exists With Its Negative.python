@@ -1,0 +1,17 @@
+class Solution(object):
+    def findMaxK(self, nums):
+
+        nums.sort()
+        m = -1 
+        for num in nums:
+            temp = -1*num
+            if temp in nums:
+                m = max(m,temp)
+
+        return m
+
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
