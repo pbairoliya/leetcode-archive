@@ -1,0 +1,18 @@
+class Solution(object):
+    def distance(self, p1, p2):
+        return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2
+
+    def numberOfBoomerangs(self, points):
+        count = 0
+        for p1 in points:
+            distances = {}
+            for p2 in points:
+                dist = self.distance(p1, p2)
+                if dist in distances:
+                    distances[dist] += 1
+                else:
+                    distances[dist] = 1
+            for dist in distances:
+                if distances[dist] > 1:
+                    count += distances[dist] * (distances[dist] - 1)
+        return count
