@@ -1,6 +1,7 @@
 class Solution(object):
     def findMaxK(self, nums):
-
+        # want to create a set as the in operaiton in sets is O(1)
+        #loop through the original array and only add the negative numbers to the set
         negNumber= set()
 
         for num in nums:
@@ -8,9 +9,10 @@ class Solution(object):
                 negNumber.add(num)
 
         ans = -1
+        #loop through the numbers again if the negative version of the number is there then update ans with the biggest number in which the negative is present as well
         for num in nums:
-            if num > ans and (-1*num) in negNumber:
-                ans = num
+            if (-1*num) in negNumber:
+                ans = max(ans,num)
         return ans
 
         """
