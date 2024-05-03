@@ -1,18 +1,27 @@
 class Solution(object):
     def totalFruit(self, fruits):
+        #create a map that will hold the frequency of the held allowed fruits
         fruitMap = {}
+        #create our start and end indicies and initalize our maxFruit variables
         start = 0 
-        maxFruit = 0 
+        end = 0 
+        maxFruit = 0
+        #loop through the array 
         for end, fruit in enumerate(fruits):
+            #update the fruitMap with the collected Fruit if it is in the map increiemnt if not add it to the map
             fruitMap[fruit] = fruitMap.get(fruit,0) + 1
-
+            #if the length of the fruitMap increases by 2 which is the max it can hold start deleting 
             if len(fruitMap) > 2:
+                #decrement that position value by 1 
                 fruitMap[fruits[start]] -=1
+                # if it gets to 0 just delete it too
                 if fruitMap[fruits[start]] == 0:
                     del fruitMap[fruits[start]]
+                #increment the start values
                 start +=1
-            maxFruit = max(maxFruit, sum(fruitMap.values()))
-        
+            #update the maxFruit with the max of current window lenght and the maxFruit
+            maxFruit =  max(maxFruit,end-start + 1)
+        #return the maxFruit (the biggest window length)
         return maxFruit
         """
         :type fruits: List[int]
