@@ -1,0 +1,19 @@
+class Solution(object):
+    def longestNiceSubarray(self, nums):
+        start = 0
+        maxLen = 0
+        AND = 0 
+        for end, num in enumerate(nums):
+            while AND & num:
+                AND ^= nums[start]
+                start +=1
+            AND |= num
+            maxLen = max(maxLen, end-start +1)
+        return maxLen
+
+
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
