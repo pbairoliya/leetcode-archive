@@ -11,8 +11,9 @@ class Solution(object):
                 if fruitMap[fruits[start]] == 0:
                     del fruitMap[fruits[start]]
                 start +=1
+            maxFruit = max(maxFruit, sum(fruitMap.values()))
         
-        return end - start + 1
+        return maxFruit
         """
         :type fruits: List[int]
         :rtype: int
