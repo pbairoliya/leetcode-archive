@@ -5,6 +5,7 @@ class Solution(object):
 
         for i in range(len(arr)-1,-1,-1):
             res.insert(0,maxLocal)
-            maxLocal = max(arr[i],maxLocal)
+            if maxLocal < arr[i]:
+                maxLocal = arr[i]
         return res
         
