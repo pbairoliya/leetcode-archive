@@ -1,10 +1,14 @@
 class Solution(object):
     def replaceElements(self, arr):
+        #create my new array 
         res = []
+        #initialize the maxLocal at that point
         maxLocal = -1
-
+        #iterate backwards add the local Max at first element cuz so far no right elements at the right most spot
         for i in range(len(arr)-1,-1,-1):
+            #continue adding the localMax
             res.insert(0,maxLocal)
+            #update the Local max after you have gone through that element
             if maxLocal < arr[i]:
                 maxLocal = arr[i]
         return res
