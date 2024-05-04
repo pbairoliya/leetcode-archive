@@ -1,0 +1,10 @@
+class Solution(object):
+    def replaceElements(self, arr):
+        res = []
+        maxLocal = -1
+
+        for i in range(len(arr)-1,-1,-1):
+            res.insert(0,maxLocal)
+            maxLocal = max(arr[i],maxLocal)
+        return res
+        
