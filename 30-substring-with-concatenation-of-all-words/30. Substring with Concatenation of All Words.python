@@ -1,0 +1,61 @@
+class Solution(object):
+    def findSubstring(self, s, words):
+        lenS = len(s)
+        lenWordList = len(words)
+        lenWord = len(words[0])
+        substringSize = lenWord * lenWordList
+        wordMap = defaultdict(int)
+        for word in words:
+            wordMap[word] +=1
+        #sliding window subMethod
+        def slidingWindow(left):
+            wordsFound = defaultdict(int)
+            wordsUsed = 0 
+            excessWord = False
+            #start at left value and go until the end of string jumping every word_length instead of 1
+            for right in range(left,lenS,lenWord):
+                if right + lenWord > lenS:
+                    break
+                
+                subStr = s[right: right + lenWord]
+                #the substring is not in the targeted words list so reset window
+                if subStr not in wordMap:
+                    wordsFound = defaultdict(int)
+                    wordsUsed = 0 
+                    excessWord = False
+                    #update left pointer to be at the next index:
+                    left = right + lenWord # adding by lenWord cuz thats how this for loop is being iterated
+
+                else:
+                    #if we reached how big the substring should be or we have an excess word
+                    while right - left == substringSize or excessWord:
+                        leftMostWord = s[left: left + lenWord]
+                        left += lenWord
+                        #trying to remove the excess
+                        wordsFound[leftMostWord] -=1
+                        if wordsFound[leftMostWord] == wordMap[leftMostWord]:
+                            excessWord = False # this was the excess word
+                        else:
+                            #We actually needed that word 
+                            wordsUsed -=1 
+                    
+                    wordsFound[subStr] +=1
+                    if wordsFound[subStr] <= wordMap[subStr]:
+                        wordsUsed +=1
+                    else:
+                        #we have more than enough of the sub in our wordMap
+                        excessWord = True
+                    
+                    if wordsUsed == lenWordList and not excessWord:
+                        res.append(left)
+        
+        
+        res = []
+        #start this sliding window at 0 to wordLength
+        for i in range(lenWord):
+            slidingWindow(i)
+        
+        return res
+       
+
+       
