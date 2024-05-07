@@ -1,0 +1,26 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def doubleIt(self, head):
+        if not head:
+            return head
+        if not head.next and head.val == 0 :
+            return head
+        curr = head
+        total = 0 
+        while curr:
+            total *=10
+            total +=curr.val
+            curr = curr.next
+
+        doubleTotal = total * 2
+        res = None
+        while doubleTotal !=0:
+            res = ListNode(0,res)
+            res.val = doubleTotal%10
+            doubleTotal //= 10
+        return res
+        
