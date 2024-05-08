@@ -1,5 +1,8 @@
 class Solution(object):
     def findRelativeRanks(self, score):
+        "the score determines the position so we want to get the top rankings hence why we want to use a heap ds"
+        "to get the scores in decending order make it -score so we can get 10 to be first as heap does small to big"
+        
         heap = []
         for index, s in enumerate(score):
             heapq.heappush(heap,(-s,index))
