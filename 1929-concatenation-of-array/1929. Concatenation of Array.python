@@ -4,7 +4,7 @@ class Solution(object):
         resNums = []
         #iterate through the param array
         for i, num in enumerate(nums):
-            #insert the first num at teh local position of nums in resNums
+            #insert the first num at the local position of nums in resNums
             resNums.insert(i,num)
             #append it to the back as well to get a [1,2,3] -> [1,2,3,1,2,3]
             resNums.append(num)
