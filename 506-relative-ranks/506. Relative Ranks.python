@@ -1,0 +1,25 @@
+class Solution(object):
+    def findRelativeRanks(self, score):
+        heap = []
+        for index, s in enumerate(score):
+            heapq.heappush(heap,(-s,index))
+
+        rank = [""] * len(score)
+        place = 1
+        print(heap)
+
+        while heap:
+            original_index = heapq.heappop(heap)[1]
+            vale = ""
+            if place == 1:
+                value = "Gold Medal"
+            elif place == 2:
+                value = "Silver Medal"
+            elif place == 3:
+                value = "Bronze Medal"
+            else:
+                value = str(place)
+            rank[original_index] = value
+            place +=1
+        
+        return rank
