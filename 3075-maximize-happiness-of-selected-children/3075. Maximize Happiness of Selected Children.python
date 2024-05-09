@@ -5,8 +5,7 @@ class Solution(object):
             heapq.heappush(heap,-num)
         ans = 0 
         for i in range(k):
-            val = heapq.heappop(heap)
-            val = -val
+            val = -heapq.heappop(heap)
             if(val-i>=0):
                 ans += (val-i) 
 
