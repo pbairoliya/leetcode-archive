@@ -1,0 +1,19 @@
+class Solution(object):
+    def maximumHappinessSum(self, happiness, k):
+        heap = []
+        for num in happiness:
+            heapq.heappush(heap,-num)
+        ans = 0 
+        for i in range(k):
+            val = heapq.heappop(heap)
+            val = -val
+            if(val-i>=0):
+                ans += (val-i) 
+
+        return ans
+        """
+        :type happiness: List[int]
+        :type k: int
+        :rtype: int
+        """
+        
