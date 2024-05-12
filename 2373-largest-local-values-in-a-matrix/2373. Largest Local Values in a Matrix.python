@@ -1,0 +1,22 @@
+class Solution(object):
+    def localMax(self,grid,i,j):
+        maxCal = -1
+        for x in range(i,i+3):
+            for y in range(j,j+3):
+                maxCal = max(maxCal,grid[x][y])
+        
+        return maxCal
+    def largestLocal(self, grid):
+        lenGrid = len(grid)
+
+        maxLocal = [[0]*(lenGrid-2) for _ in range(lenGrid-2)]
+        for i in range(lenGrid-2):
+            for j in range(lenGrid-2):
+                maxLocal[i][j] = self.localMax(grid,i,j)
+        
+        return maxLocal
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        
