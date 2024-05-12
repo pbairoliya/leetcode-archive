@@ -1,0 +1,28 @@
+class Solution(object):
+    def mincostToHireWorkers(self, quality, wage, k):
+        n = len(quality)
+        cost = float("inf")
+
+        wq_ratio = [(float(w)/q,q) for w,q in zip(wage,quality)]
+
+        totalQ = 0 
+        heap = []
+
+        wq_ratio.sort(key = lambda x:x[0])
+        for wq,q in wq_ratio:
+            totalQ += q
+            heappush(heap,-q)
+
+            if len(heap) > k:
+                totalQ += heappop(heap)
+            if len(heap) == k:
+                cost = min(cost,totalQ*wq)
+
+        return cost
+        """
+        :type quality: List[int]
+        :type wage: List[int]
+        :type k: int
+        :rtype: float
+        """
+        
