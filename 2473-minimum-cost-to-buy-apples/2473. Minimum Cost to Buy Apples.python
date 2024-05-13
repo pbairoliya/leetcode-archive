@@ -1,0 +1,23 @@
+class Solution(object):
+    def minCost(self, n, roads, appleCost, k):
+        graph = [[] for i in range(n)]
+        #have to append twice because the graph is bidrectional
+        for cityA, cityB, cost in roads:
+            graph[cityA-1].append((cityB-1,cost))
+            graph[cityB-1].append((cityA-1,cost))
+        
+        result = appleCost
+
+        heap = [(costOfApple,cityIdx) for cityIdx, costOfApple in enumerate(appleCost)]
+        heapify(heap)
+        while heap:
+            totalCost, currCity = heapq.heappop(heap)
+
+            if result[currCity] < totalCost:
+                continue
+            for neighbor,cost  in graph[currCity]:
+                if result[neighbor] > result[currCity] + (k+1) * cost:
+                    result[neighbor] = result[currCity] + (k+1) * cost
+                    heapq.heappush(heap, (result[neighbor],neighbor))
+        
+        return result
