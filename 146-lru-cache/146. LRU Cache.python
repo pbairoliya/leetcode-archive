@@ -1,0 +1,49 @@
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        self.cap = capacity
+        self.cache = deque()
+        self.keyMap = {}
+        
+
+    def get(self, key):
+        if key not in self.keyMap:
+            return -1
+        
+
+        # pop key and push to the front
+        self.cache.remove(key)
+        self.cache.appendleft(key)
+
+        return self.keyMap[key]
+        """
+        :type key: int
+        :rtype: int
+        """
+        
+
+    def put(self, key, value):
+
+        if key not in self.keyMap:
+            if len(self.cache) == self.cap:
+                #remove least recently used - last item
+                oldestKey = self.cache.pop()
+                self.keyMap.pop(oldestKey)
+            self.cache.appendleft(key)
+            self.keyMap[key] = value
+        else:
+            self.cache.remove(key)
+            self.cache.appendleft(key)
+            self.keyMap[key] = value
+        """
+        :type key: int
+        :type value: int
+        :rtype: None
+        """
+        
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
