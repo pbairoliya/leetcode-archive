@@ -1,0 +1,17 @@
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        if len(strs) == 1 :
+            return strs[0]
+
+        ans = ""
+        keyString = min(strs,key = len)
+
+        for i in range(len(keyString)):
+            for word in strs:
+                if keyString[i]!= word[i]:
+                    return ans
+
+            ans += keyString[i]    
+
+
+        return ans
