@@ -1,0 +1,19 @@
+class Solution(object):
+    def partitionString(self, s):
+        partition = 1 
+        seen = ""
+
+        for character in s:
+            print(seen)
+            if character in seen:
+                seen = ""
+                seen+= character
+                partition +=1
+                    
+            else:
+                seen+= character
+        return partition
+        """
+        :type s: str
+        :rtype: int
+        """
