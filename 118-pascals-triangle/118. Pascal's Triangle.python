@@ -1,0 +1,21 @@
+class Solution(object):
+    def generate(self, numRows):
+        result = []
+        for num in range(numRows):
+            #initialize each row to be that num value plus 1
+            row = [0 for _ in range(num+1)]
+
+            row[0], row[-1] = 1,1
+            # fill in the rest of the values ( this loop wont even start until row 3)
+            for j in range(1,len(row)-1):
+                #go to the previous result and get the values and add it up 
+                row[j] = result[num-1][j-1] + result[num-1][j]
+            result.append(row)
+        
+        return result
+
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        
