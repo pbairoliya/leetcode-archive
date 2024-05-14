@@ -1,0 +1,15 @@
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        rightPointer = len(s)-1
+
+        while rightPointer >=0 and s[rightPointer] == ' ':
+            rightPointer-=1
+        count = 0
+        while rightPointer >=0 and s[rightPointer] != ' ':
+            count+=1
+            rightPointer -=1
+        return count
+        """
+        :type s: str
+        :rtype: int
+        """
