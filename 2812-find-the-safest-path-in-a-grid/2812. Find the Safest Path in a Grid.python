@@ -1,0 +1,49 @@
+class Solution(object):
+    def maximumSafenessFactor(self, grid):
+        directions = [(0,1),(0,-1),(1,0),(-1,0)]
+
+        multiSoruceQueue = deque()
+
+        for i in range(len(grid)):
+            for j in range(len(grid)):
+                if grid[i][j] == 1:
+                    #push theifs into the queue
+                    multiSoruceQueue.append((i,j))
+                    grid[i][j] = 0
+                else:
+                    #mark no theif places with -1
+                    grid[i][j] = -1
+        
+        while multiSoruceQueue:
+            size = len(multiSoruceQueue)
+            while size > 0 :
+                curr = multiSoruceQueue.popleft()
+                for d in directions:
+                    di,dj = curr[0] + d[0], curr[1] + d[1]
+                    currVal = grid[curr[0]][curr[1]]
+                    if di >=0 and di<len(grid) and dj>=0 and dj<len(grid) and grid[di][dj] == -1:
+                        grid[di][dj] = currVal + 1
+                        multiSoruceQueue.append((di,dj))
+                    
+                    size -=1
+        pq = [[-grid[0][0],0,0]]
+        grid[0][0] = -1 # mark it because we visited it 
+        while pq:
+            safeness,i,j = heapq.heappop(pq)
+            if  i == (len(grid)) -1 and (j == len(grid)-1):
+                return -safeness
+            
+            for d in directions:
+                di, dj = i + d[0], j + d[1]
+                if di >=0 and di<len(grid) and dj>=0 and dj<len(grid) and grid[di][dj] != -1:
+                    #figure out what the max -negative safeness route is and store it in the heap
+                    heapq.heappush(pq,[-min(-safeness,grid[di][dj]),di,dj])
+                    #mark it as visted
+                    grid[di][dj] = -1
+        return -1 
+
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        
