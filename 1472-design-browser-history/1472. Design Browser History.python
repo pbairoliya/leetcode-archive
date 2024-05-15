@@ -1,0 +1,55 @@
+class DLLNode:
+    def __init__(self, url):
+        self.data = url
+        self.prev, self.next = None, None
+
+class BrowserHistory(object):
+
+    def __init__(self, homepage):
+        self.current = DLLNode(homepage)
+        """
+        :type homepage: str
+        """
+        
+
+    def visit(self, url):
+        newNode = DLLNode(url)
+        self.current.next = newNode
+        newNode.prev = self.current
+        self.current = self.current.next
+
+        """
+        :type url: str
+        :rtype: None
+        """
+        
+
+    def back(self, steps):
+        while steps>0 and self.current.prev:
+            self.current = self.current.prev
+            steps-=1
+        return self.current.data
+
+        """
+        :type steps: int
+        :rtype: str
+        """
+        
+
+    def forward(self, steps):
+        while steps >0 and self.current.next:
+            self.current = self.current.next
+            steps -=1
+        return self.current.data
+        """
+        :type steps: int
+        :rtype: str
+        """
+        
+
+
+# Your BrowserHistory object will be instantiated and called as such:
+# obj = BrowserHistory(homepage)
+# obj.visit(url)
+# param_2 = obj.back(steps)
+# param_3 = obj.forward(steps)
