@@ -1,0 +1,39 @@
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        #trying to find a cycle!
+        #use Khans algorithm
+        indegree = [0]* numCourses
+        adj = [[] for _ in range(numCourses)]
+
+        for preq in prerequisites:
+            adj[preq[1]].append(preq[0])
+            indegree[preq[0]] +=1
+        #append the vals in queue if that value does not have a branch in adj list
+        #when vals have brancehs to each other it wont add anything to the queue
+        queue = deque()
+        for i in range(numCourses):
+            if indegree[i] == 0:
+                queue.append(i)
+
+        nodesVisited = 0
+
+        while queue:
+            node = queue.popleft()
+            nodesVisited +=1
+
+            for neighbor in adj[node]:
+                indegree[neighbor]-=1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+            
+        
+        return nodesVisited == numCourses
+        
+
+
+        
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
