@@ -1,0 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def evaluateTree(self, root):
+        #handles the case if there are leaf nodes:
+        if not root.left and not root.right:
+            return root.val != 0 # check if it is true or false
+        
+        left_tree_eval = self.evaluateTree(root.left)
+        right_tree_eval = self.evaluateTree(root.right)
+        # or operation
+        if root.val == 2:
+            root_eval = left_tree_eval or right_tree_eval
+        # and operation
+        else:
+            root_eval = left_tree_eval and right_tree_eval
+
+
+
+        return root_eval
+        
