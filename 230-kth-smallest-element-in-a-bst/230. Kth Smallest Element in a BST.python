@@ -17,7 +17,7 @@ class Solution(object):
                 dfs(root.right)
 
         dfs(root)
-        print(heapify(heap))
+        heapify(heap)
 
         for i in range(k-1):
             heapq.heappop(heap)
