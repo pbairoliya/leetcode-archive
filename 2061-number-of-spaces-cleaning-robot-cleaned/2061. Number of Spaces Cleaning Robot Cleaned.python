@@ -1,0 +1,23 @@
+class Solution(object):
+    def numberOfCleanRooms(self, room):
+        roomsCleaned = 0 
+        DIRECTIONS = (0,1,0,-1,0)
+        visited =  set()
+        cleaned = set()
+
+        def dfs(row,col,direction):
+            if (row, col, direction) in visited:
+                return len(cleaned)
+            
+            visited.add((row,col,direction))
+            cleaned.add((row,col))
+
+            next_row = row + DIRECTIONS[direction]
+            next_col = col + DIRECTIONS[direction + 1]
+            if 0 <= next_row < len(room) and 0 <= next_col < len(room[0]) and room[next_row][next_col]!=1:
+                return dfs(next_row, next_col, direction)
+
+            # Otherwise turn right and clean the current space
+            return dfs(row, col, (direction + 1) % 4)
+        return dfs(0,0,0)
+        
