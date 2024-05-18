@@ -7,10 +7,6 @@ class BrowserHistory(object):
 
     def __init__(self, homepage):
         self.current = DLLNode(homepage)
-        """
-        :type homepage: str
-        """
-        
 
     def visit(self, url):
         newNode = DLLNode(url)
