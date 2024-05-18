@@ -10,9 +10,3 @@ class Solution(object):
                 ans += (val-i) 
 
         return ans
-        """
-        :type happiness: List[int]
-        :type k: int
-        :rtype: int
-        """
-        
