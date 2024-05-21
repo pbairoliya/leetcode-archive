@@ -1,0 +1,22 @@
+class Solution(object):
+    def helper(self,res,combo,nums,index):
+        # append comobo to ans
+        res.append(combo[:])
+        #base case
+        if index > len(nums):
+            return 
+        #for loop thorugh it 
+        for i in range(index, len(nums)):
+            # append possibilty t comobo
+            combo.append(nums[i])
+            #recur
+            self.helper(res,combo,nums,i+1)
+            #backtrack
+            combo.pop()
+        return
+    def subsets(self, nums):
+        #initialize ans
+        res = []
+        #start recur backtrack
+        self.helper(res,[],nums,0)
+        return res
