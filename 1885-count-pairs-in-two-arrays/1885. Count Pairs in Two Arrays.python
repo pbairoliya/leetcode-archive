@@ -1,0 +1,25 @@
+class Solution(object):
+    def countPairs(self, nums1, nums2):
+        difference = [nums1[i] - nums2[i] for i in range(len(nums1))]
+
+        difference.sort()
+
+        ans = 0 
+        for i in range(len(nums1)):
+            if difference[i] > 0:
+                ans += (len(nums1)-i-1)
+            else:
+                left = i + 1
+                right = len(nums1)-1
+
+                while left <= right:
+                    mid = (left + right)//2
+
+                    if difference[i] + difference[mid] > 0 :
+                        right = mid-1
+                    else:
+                        left = mid + 1
+                    
+                ans += (len(nums1)- left)
+
+        return ans
