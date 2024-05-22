@@ -1,0 +1,25 @@
+class Solution(object):
+    def isPali(self,s):
+        left = 0 
+        right = len(s)-1
+        while left < right:
+            if s[left] != s[right]:
+                return False
+            left +=1
+            right -=1
+        return True
+    def backtrack(self,res,part,s):
+        if len(s) == 0 and len(part)>0:
+            res.append(part[:])
+            return
+
+        for i in range(len(s)):
+            segment = s[0:i+1]
+            if(self.isPali(segment)):
+                part.append(segment)
+                self.backtrack(res,part,s[i+1:])
+                part.pop()
+    def partition(self, s):
+        res  = []
+        self.backtrack(res,[],s)
+        return res        
