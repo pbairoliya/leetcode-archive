@@ -1,0 +1,22 @@
+class Solution(object):
+    def wordPattern(self, pattern, s):
+
+        map = {}
+        words = s.split()
+
+        if len(pattern) != len(words):
+            return False
+        
+        for letter,word in zip(pattern,words):
+            if letter in map:
+                if word != map[letter]:
+                    return False
+            elif word in map.values():
+                return False
+            map[letter] = word 
+        return True
+        """
+        :type pattern: str
+        :type s: str
+        :rtype: bool
+        """
