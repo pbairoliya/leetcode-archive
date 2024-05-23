@@ -1,17 +1,18 @@
 class Solution(object):
     def backtrack(self,nums,k,combo):
         if len(combo) > 0:
+
             self.total +=1
         
         if not nums:
             return 
         
         for i in range(len(nums)):
-            
             if(nums[i]-k in combo) or (nums[i]+k in combo):
                 continue
-
-            self.backtrack(nums[i+1:],k,combo + [nums[i]])
+            combo.append(nums[i])
+            self.backtrack(nums[i+1:],k,combo)
+            combo.pop()
 
     def beautifulSubsets(self, nums, k):
         self.total = 0 
