@@ -1,0 +1,35 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+
+        sumList = ListNode(-1)
+        returnList = sumList
+        carry = 0 
+        while l1 or l2 or carry>0:
+            #if the carry is there then add it to the currentSum just like addition
+            currSum = carry
+            #if there is l1 add the value to currSum and move that list forward
+            if l1:
+                currSum += l1.val
+                l1 = l1.next
+            #if there is l2 add the value to currSum and move the list forward
+            if l2:
+                currSum += l2.val
+                l2 = l2.next
+
+            if currSum >=10:
+                carry = currSum//10
+                currSum = currSum%10
+
+            else:
+                carry = 0 
+            #create new node, point the currentNode next to the new Node then iterate over
+            newNode = ListNode(currSum)
+            sumList.next = newNode
+            sumList = sumList.next
+        #as the new list will be pointing to the end we need to use the other pointer to return
+        return returnList.next
