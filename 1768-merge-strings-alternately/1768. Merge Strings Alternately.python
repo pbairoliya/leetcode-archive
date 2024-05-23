@@ -1,0 +1,16 @@
+class Solution(object):
+    def mergeAlternately(self, word1, word2):
+        mergedString = []
+        idx = 0 
+
+        while idx< len(word1) and idx< len(word2):
+            mergedString.append(word1[idx])
+            mergedString.append(word2[idx])
+            idx +=1
+        returnString = "".join(mergedString)
+        if idx < len(word1):
+            returnString += word1[idx:]
+        elif idx < len(word2):
+            returnString += word2[idx:]
+        return returnString
+        
