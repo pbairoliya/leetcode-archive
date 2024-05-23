@@ -1,25 +1,15 @@
 class Solution(object):
     def mergeAlternately(self, word1, word2):
         mergedString = ""
-        shortLen = 0
-        leftOver = ""
-        if len(word1) >= len(word2):
-            shortLen = len(word2)
-            leftOver = word1[shortLen:]
-        else:
-            shortLen = len(word1)
-            leftOver = word2[shortLen:]
-        
-        for i in range(shortLen):
-            mergedString += word1[i]
-            mergedString += word2[i]
-        mergedString += leftOver
+        idx = 0 
 
+        while idx< len(word1) and idx< len(word2):
+            mergedString += word1[idx]
+            mergedString += word2[idx]
+            idx +=1
+        if idx < len(word1):
+            mergedString += word1[idx:]
+        elif idx < len(word2):
+            mergedString += word2[idx:]
         return mergedString
-
-         
-        """
-        :type word1: str
-        :type word2: str
-        :rtype: str
-        """
+        
