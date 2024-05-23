@@ -1,0 +1,31 @@
+class Solution(object):
+    def backtrack(self,nums,k,combo):
+        if len(combo) > 0:
+            self.total +=1
+        
+        if not nums:
+            return 
+        
+        for i in range(len(nums)):
+            
+            if(nums[i]-k in combo) or (nums[i]+k in combo):
+                continue
+
+            self.backtrack(nums[i+1:],k,combo + [nums[i]])
+
+    def beautifulSubsets(self, nums, k):
+        self.total = 0 
+        self.backtrack(nums,k,[])
+        return self.total 
+
+
+
+
+
+
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        
