@@ -1,17 +1,12 @@
 class Solution(object):
     def countAlternatingSubarrays(self, nums):
-        count = 1
-        total = 0 
-        for i in range(1,len(nums)):
-            if nums[i] != nums[i-1]:
-                count +=1 
-            else:
-                count = 1
-            
-            total += count
-        return total + 1
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+        ans = 0 
+        left = 0 
+        prev = -1
+        for right in range(len(nums)):
+            if nums[right]==prev:
+                left = right
+            ans +=(right-left+1)
+            prev = nums[right]
         
+        return ans
