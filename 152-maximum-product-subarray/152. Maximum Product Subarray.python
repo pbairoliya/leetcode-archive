@@ -1,0 +1,14 @@
+class Solution(object):
+    def maxProduct(self, nums):
+        minProduct = maxProduct = result = nums[0]
+        for i in range(1, len(nums)):
+            currMin = min(nums[i], maxProduct * nums[i], minProduct * nums[i])
+            currMax = max(nums[i], maxProduct * nums[i], minProduct * nums[i])
+            result = max(result, currMax)
+            maxProduct = currMax
+            minProduct = currMin
+        return result 
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
