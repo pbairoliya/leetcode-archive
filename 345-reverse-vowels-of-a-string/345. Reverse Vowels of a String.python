@@ -1,0 +1,25 @@
+class Solution(object):
+    def reverseVowels(self, str):
+        vowels = set(['A','E','I','O','U', 'a','e','i','o','u'])
+        right = len(str)-1
+        left = 0
+        s = list(str)
+        while left < right :
+            while  left < right and s[left] not in vowels:
+                left +=1
+            while left< right and s[right] not in vowels:
+                right -=1
+            
+            s[left],s[right] = s[right],s[left]
+            
+            left +=1
+            right -=1
+        
+        return "".join(s)
+
+
+
+        """
+        :type s: str
+        :rtype: str
+        """
