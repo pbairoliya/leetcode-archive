@@ -1,0 +1,19 @@
+class Solution(object):
+    def arrayRankTransform(self, arr):
+        sorted_array = sorted(set(arr))
+        idx_dict = defaultdict(int)
+        for i, num in enumerate(sorted_array):
+            idx_dict[num] = i
+
+        ans = [0 for _ in range(len(arr))]
+
+        for i, num in enumerate(arr):
+            ans[i] = idx_dict[num] + 1
+        
+        return ans
+
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+        
