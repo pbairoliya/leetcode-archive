@@ -1,0 +1,24 @@
+class Solution(object):
+    def gcd (self,a,b):
+        if b == 0:
+            return a
+        return self.gcd(b,a%b)
+    def findGCD(self, nums):
+        max_num = nums[0]
+        min_num = nums[0]
+        for num in nums:
+            if num > max_num:
+                max_num = num
+            if num < min_num:
+                min_num = num
+
+
+        return self.gcd(max_num, min_num)
+
+
+
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
