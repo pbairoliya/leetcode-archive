@@ -1,0 +1,52 @@
+class Solution(object):
+    def maxScoreWords(self, words, letters, score):
+        word_idx = len(words)-1
+        self.max_score = 0 
+        letter_freq = [0 for _ in range(26)]
+        subset_letters = [0 for _ in range(26)]
+
+        for l in letters:
+            letter_freq[ord(l)-97] +=1 
+        #check if adding this word exceeds the freq of any letter
+        def is_valid_word(subset_letters):
+            for l in range(26):
+                if letter_freq[l] < subset_letters[l]:
+                    return False
+            return True
+        
+        def backtrack (word_idx,words,score,subset_letters,total_score):
+            #have gone by everyword
+            if word_idx == -1:
+                self.max_score = max(self.max_score,total_score)
+                return 
+            
+            #not adding words[w] to the current subset
+            backtrack(word_idx-1,words,score,subset_letters,total_score)
+            curr_word_len = len(words[word_idx])
+            for i in range(curr_word_len):
+                l = (ord(words[word_idx][i])-97)
+                #add these values the subset_letter map
+                subset_letters[l] += 1
+                total_score += score[l]
+
+            if is_valid_word(subset_letters):
+                #consider the next word if this subset is valid:
+                backtrack(word_idx - 1, words, score, subset_letters,total_score)
+
+            #backtrack
+            for i in range(curr_word_len):
+                c = (ord(words[word_idx][i])-97) 
+                subset_letters[c] -= 1
+                total_score -= score[c]
+        
+        backtrack(word_idx,words,score,subset_letters,0)
+
+        return self.max_score
+
+        """
+        :type words: List[str]
+        :type letters: List[str]
+        :type score: List[int]
+        :rtype: int
+        """
+        
