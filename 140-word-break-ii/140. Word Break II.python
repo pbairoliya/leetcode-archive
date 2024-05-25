@@ -1,0 +1,22 @@
+class Solution(object):
+    def backtrack(self,s,word_set,current_sentence,results,start_index):
+        #if we got to the end of the string append it to results:
+        if start_index == len(s):
+            results.append(" ".join(current_sentence))
+        
+        for end_index in range(start_index + 1, len(s) + 1):
+            word = s[start_index:end_index]
+
+            # O(1) because we made word_set only then do the backtrack algorithm
+            if word in word_set:
+                current_sentence.append(word)
+                self.backtrack(s,word_set,current_sentence, results, end_index)
+                current_sentence.pop()
+    def wordBreak(self, s, wordDict):
+        word_set = set(wordDict)
+        results = []
+
+        self.backtrack(s,word_set,[],results,0)
+
+        return results
+        
