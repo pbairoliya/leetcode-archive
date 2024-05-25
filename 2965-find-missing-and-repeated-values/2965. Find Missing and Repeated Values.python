@@ -1,0 +1,13 @@
+class Solution(object):
+    def findMissingAndRepeatedValues(self, grid):
+        map_idx = [0] * (len(grid)**2)
+        for num_list in grid:
+            for num in num_list:
+                map_idx[num-1] +=1 
+        
+        return [map_idx.index(2)+1, map_idx.index(0)+1]
+        """
+        :type grid: List[List[int]]
+        :rtype: List[int]
+        """
+        
