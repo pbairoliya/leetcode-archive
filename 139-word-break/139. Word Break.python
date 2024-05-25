@@ -1,0 +1,20 @@
+class Solution(object):
+    def backtrack(self,s,word_set,index, cache):
+        if index == len(s):
+            return True
+        if index in cache:
+            return cache[index]
+        result  = False
+        for word in word_set:
+            if len(word) + index <=len(s) and s[index:index + len(word)] == word:
+                result = self.backtrack(s,word_set,index + len(word),cache)
+                if result:
+                    break
+        cache[index] = result
+        return cache[index]
+        
+    def wordBreak(self, s, wordDict):
+       word_set = set(wordDict)
+       result = self.backtrack(s,word_set,0,{})
+       return result
+
