@@ -1,0 +1,16 @@
+class Solution(object):
+    def duplicateNumbersXOR(self, nums):
+        total = 0
+        set_nums = set()
+        for num in nums:
+            if num in set_nums:
+                total ^= num
+            
+            else:
+                set_nums.add(num)
+        return total
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
