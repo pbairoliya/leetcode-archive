@@ -7,7 +7,9 @@ class Solution(object):
         result  = False
         for word in word_set:
             if len(word) + index <=len(s) and s[index:index + len(word)] == word:
-                result = self.backtrack(s,word_set,index + len(word),cache)
+                index += len(word)
+                result = self.backtrack(s,word_set,index,cache)
+                index -= len(word)
                 if result:
                     break
         cache[index] = result
