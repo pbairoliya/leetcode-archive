@@ -1,0 +1,13 @@
+class Solution(object):
+    def maximumEnergy(self, energy, k):
+        lenE = len(energy)
+        res = float("-inf")
+        for start in range(k):
+            running_sum = 0
+            i = lenE - 1 - start
+            while i >= 0:
+                running_sum += energy[i]
+                res = max(res, running_sum)
+                i -= k
+        return res
+        
