@@ -1,0 +1,20 @@
+class Solution(object):
+    def equalSubstring(self, s, t, maxCost):
+        max_sub_str = 0 
+        left = 0 
+        total_cost = 0 
+        for right in range(len(t)):
+            total_cost += abs(ord(t[right])-ord(s[right]))
+            while total_cost > maxCost and left < len(t):
+                total_cost -= abs(ord(t[left])-ord(s[left]))
+                left += 1 
+            max_sub_str = max(max_sub_str,right-left +1 )
+        
+        return max_sub_str
+        """
+        :type s: str
+        :type t: str
+        :type maxCost: int
+        :rtype: int
+        """
+        
