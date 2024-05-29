@@ -1,0 +1,16 @@
+class Solution(object):
+    def numSteps(self, s):
+        steps = 0 
+        carry = 0 
+        for i in range(len(s)-1,0,-1):
+            if (int(s[i]) + carry) % 2 == 0:
+                steps +=1
+            else:
+                steps +=2 
+                carry = 1
+        return steps + carry 
+        """
+        :type s: str
+        :rtype: int
+        """
+        
