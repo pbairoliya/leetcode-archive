@@ -1,16 +1,15 @@
 class Solution(object):
     def numSteps(self, s):
-        steps = 0 
-        carry = 0 
-        for i in range(len(s)-1,0,-1):
-            if (int(s[i]) + carry) % 2 == 0:
-                steps +=1
+        #conver to int:
+        bin_in_int = 0 
+        for i in range(len(s)):
+            bin_in_int *=2
+            bin_in_int += int(s[i])
+        operations = 0 
+        while bin_in_int != 1:
+            if bin_in_int % 2 == 1:
+                bin_in_int +=1
             else:
-                steps +=2 
-                carry = 1
-        return steps + carry 
-        """
-        :type s: str
-        :rtype: int
-        """
-        
+                bin_in_int //=2
+            operations +=1
+        return operations
