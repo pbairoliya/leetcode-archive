@@ -1,7 +1,10 @@
 class Solution(object):
     def numSteps(self, s):
         #conver to int:
-        bin_in_int = int(s,2)
+        bin_in_int = 0 
+        for i in range(len(s)):
+            bin_in_int *=2
+            bin_in_int += int(s[i])
         operations = 0 
         while bin_in_int != 1:
             if bin_in_int % 2 == 1:
