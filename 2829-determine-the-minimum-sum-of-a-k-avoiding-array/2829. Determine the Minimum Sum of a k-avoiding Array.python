@@ -1,0 +1,14 @@
+class Solution(object):
+    def minimumSum(self, n, k):
+        curr_num = 1
+        curr_sum = 0 
+        num_set = set()
+        
+        while len(num_set) < n:
+            if k - curr_num not in num_set:
+                num_set.add(curr_num)
+                curr_sum += curr_num
+            curr_num +=1 
+        
+        return curr_sum
+        
