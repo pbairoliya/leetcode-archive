@@ -1,0 +1,47 @@
+class Solution(object):
+    def compress(self, chars):
+
+        def compressor(chars):
+            res = []
+            cnt = 1
+            for i in range(1,len(chars)):
+                if chars[i-1] == chars[i]:
+                    cnt+=1
+                else:
+                    res.append([chars[i-1],cnt])
+                    cnt = 1
+            res.append([chars[-1],cnt])
+            return res
+        def newChars(chars,compressedArray):
+            chars = []
+            for char, freq in compressedArray:
+                if freq == 1:
+                    chars.append((char))
+                elif freq<10:
+                    chars.append(str(char))
+                    chars.append(str(freq))
+                elif freq>=10:
+                    chars.append(str(char))
+                    stringFreq = str(freq)
+                    for letter in stringFreq:
+                        chars.append(letter)
+            return chars
+
+        
+        compressedArray = compressor(chars)
+        newArr = newChars(chars,compressedArray)
+        for i in range(len(newArr)):
+            chars[i] = newArr[i]
+    
+        while len(chars) != len(newArr):
+            chars.pop()
+        return len(chars)
+        
+
+
+
+
+        """
+        :type chars: List[str]
+        :rtype: int
+        """
