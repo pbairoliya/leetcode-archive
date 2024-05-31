@@ -1,0 +1,22 @@
+class Solution(object):
+    def minSwaps(self, data):
+        num_of_ones = 0 
+        for num in data:
+            if num: 
+                num_of_ones += 1
+        
+        deque = collections.deque()
+        count_one = 0 
+        max_one = 0 
+        for num in data:
+            deque.append(num)
+            count_one += num
+            #we remove the leftmost value from the deque when there are more 
+            # elements in the deque then there are ones 
+            if len(deque) > num_of_ones:
+                count_one -= deque.popleft()
+            
+            max_one = max(max_one, count_one)
+
+        return num_of_ones - max_one
+
