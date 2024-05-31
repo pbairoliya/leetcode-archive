@@ -1,0 +1,17 @@
+class Solution(object):
+    def singleNumber(self, nums):
+        map = defaultdict(int)
+
+        for num in nums:
+            map[num] +=1 
+        ans = []
+        for key in map:
+            if map[key] == 1:
+                ans.append(key)
+        
+        return ans
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        
