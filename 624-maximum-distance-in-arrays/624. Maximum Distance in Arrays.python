@@ -1,0 +1,20 @@
+class Solution(object):
+    def maxDistance(self, arrays):
+        min_num = arrays[0][0]
+        max_num = arrays[0][-1]
+
+        res = 0 
+
+        for arr in arrays[1:]:
+            start = arr[0]
+            end = arr[-1]
+
+
+            res = max(end-min_num, max_num - start, res)
+
+            min_num = min(min_num, start)
+            max_num = max(max_num, end)
+        
+        return res
+
+        
