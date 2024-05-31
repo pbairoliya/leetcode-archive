@@ -1,0 +1,43 @@
+class RangeFreqQuery(object):
+
+    def __init__(self, arr):
+        self.range_map = defaultdict(list)
+
+        for i, num in enumerate(arr):
+            self.range_map[num].append(i)
+        
+        """
+        :type arr: List[int]
+        """
+        
+    def find_left_bound(self, arr, target):
+        l, r =  0, len(arr)
+
+        while l < r:
+            mid = (l + r)//2
+            if arr[mid] >= target:
+                r = mid
+            else: l = mid + 1
+        
+        return l
+    
+    def find_right_bound(self, arr, target):
+        l, r = 0, len(arr)
+
+        while l < r:
+            mid = (l + r)//2
+            if arr[mid] <= target:
+                l = mid + 1
+            else:
+                r = mid
+        
+        return l - 1
+
+    def query(self, left, right, value):
+        list_of_indices = self.range_map[value]
+
+        left_index = self.find_left_bound(list_of_indices, left)
+        right_index = self.find_right_bound(list_of_indices, right)
+        
+
+        return right_index - left_index + 1
