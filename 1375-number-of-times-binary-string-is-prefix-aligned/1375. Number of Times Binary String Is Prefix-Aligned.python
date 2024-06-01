@@ -1,0 +1,19 @@
+class Solution(object):
+    def numTimesAllBlue(self, flips):
+
+        flipped = 0 
+        counter = 0 
+        highestFlip = 0 
+
+        for flip in flips:
+            flipped +=1
+            highestFlip = max(flip, highestFlip)
+            if flipped == highestFlip:
+                counter +=1
+        
+        return counter
+
+        """
+        :type flips: List[int]
+        :rtype: int
+        """
