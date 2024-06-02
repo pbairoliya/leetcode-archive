@@ -1,0 +1,19 @@
+class Solution(object):
+    def minimumChairs(self, s):
+        count = 0 
+        max_chairs = 0 
+        prev = ""
+        for char in s:
+            if char == "E":
+                count +=1
+            else :
+                count -=1
+            max_chairs = max(max_chairs,count)
+        
+        return max_chairs
+
+        """
+        :type s: str
+        :rtype: int
+        """
+        
