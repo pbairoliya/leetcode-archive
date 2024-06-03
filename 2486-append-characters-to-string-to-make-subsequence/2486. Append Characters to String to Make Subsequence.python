@@ -1,0 +1,13 @@
+class Solution(object):
+    def appendCharacters(self, s, t):
+        i = 0 
+        max_len = 0 
+        pointer = 0 
+        while i < len(s) and pointer < len(t):
+            if s[i] == t[pointer]:
+                max_len +=1
+                pointer +=1
+            
+            i +=1 
+        
+        return len(t) - max_len
