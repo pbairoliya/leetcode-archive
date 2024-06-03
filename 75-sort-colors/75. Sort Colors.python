@@ -1,16 +1,20 @@
 class Solution(object):
     def sortColors(self, nums):
+        "All 0's should be pointed to the front"
         p0 = curr = 0
 
         # For all idx > p2 : nums[idx > p2] = 2
-        p2 = len(nums) - 1
+        "All 2's should be pointed to the back"
 
+        p2 = len(nums) - 1
+        "Loop through current till you get past the 2's back"
         while curr <= p2:
+            "Swap 0 to the fornt and move past it through curr and move the 0'"
             if nums[curr] == 0:
                 nums[p0], nums[curr] = nums[curr], nums[p0]
                 p0 += 1
                 curr += 1
-            elif nums[curr] == 2:
+            elif nums[curr] == 2 :
                 nums[curr], nums[p2] = nums[p2], nums[curr]
                 p2 -= 1
             else:
