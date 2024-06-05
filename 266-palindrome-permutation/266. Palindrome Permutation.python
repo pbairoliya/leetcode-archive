@@ -4,10 +4,8 @@ class Solution(object):
         letterMap = defaultdict(int)
 
         for letter in s:
-            if letter in letterMap:
-                letterMap[letter] +=1
-            else:
-                letterMap[letter] = 1
+            letterMap[letter] +=1
+            
         #now check if each frequency of the map is modulo by 2 if its more than 0 add it up 
         count = 0 
         for key in letterMap:
