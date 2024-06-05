@@ -1,0 +1,16 @@
+class Solution(object):
+    def largestAltitude(self, gain):
+        prefix_sum = [0] 
+        max_height = 0
+        for i,num in enumerate(gain):
+            prefix_sum.append(num + prefix_sum[i])
+
+            max_height = max(max_height,num + prefix_sum[i])
+
+        
+        return max_height
+        """
+        :type gain: List[int]
+        :rtype: int
+        """
+        
