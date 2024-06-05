@@ -1,0 +1,20 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        letter_map = defaultdict(int)
+        for letter in s:
+            letter_map[letter] +=1
+        
+        odd_freq_found = False
+        pali_length = 0
+        for count in letter_map.values():
+            if count % 2 == 0 :
+                
+                pali_length += count
+            else:
+                pali_length += count-1
+                odd_freq_found = True
+        if odd_freq_found:
+            pali_length +=1
+        
+
+        return pali_length
