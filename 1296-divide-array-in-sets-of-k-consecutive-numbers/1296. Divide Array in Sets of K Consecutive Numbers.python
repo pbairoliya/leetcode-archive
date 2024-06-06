@@ -1,0 +1,36 @@
+class Solution(object):
+    def isPossibleDivide(self, nums, k):
+        if len(nums) % k != 0 :
+            return False
+
+        count_map = defaultdict(int)
+        for num in nums:
+            count_map[num] +=1
+        
+        min_heap = list(count_map.keys())
+
+        heapq.heapify(min_heap)
+
+        while min_heap:
+            start = heapq.heappop(min_heap)
+
+            if count_map[start] == 0:
+                continue
+
+            
+            for i in range(k):
+                other_num = start + i
+                if count_map[other_num] == 0:
+                    return False
+                count_map[other_num] -=1
+                if count_map[other_num] > 0 and other_num not in min_heap:
+                    heapq.heappush(min_heap, other_num)
+            
+        return True
+        
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        
