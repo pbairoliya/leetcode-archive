@@ -1,0 +1,21 @@
+class Solution(object):
+    def singleNonDuplicate(self, nums):
+        #because the array is sorted and we are looking for something specific-> binary search 
+
+        left = 0 
+        right = len(nums)-1
+
+        while left < right:
+            mid = (left + right)//2
+            if mid < right and nums[mid] == nums[mid+1]:
+                mid = mid + 1
+
+            if nums[mid] != nums[mid-1] and nums[mid] != nums[mid+1]:
+                return nums[mid]
+            
+            elif abs(mid-left) % 2 == 0:
+                right = mid-1
+            else:
+                left = mid + 1
+        
+        return nums[left]
