@@ -1,0 +1,23 @@
+class Solution(object):
+    def replaceWords(self, dictionary, sentence):
+        dictionary = set(dictionary)
+        word_list = sentence.split()
+        return_list = []
+        for word in word_list:
+            short_word = word
+            for i in range(len(word)):
+                if word[:i] in dictionary:
+                    short_word = word[:i]
+                    break
+                
+            return_list.append(short_word)
+
+    
+        return " ".join(return_list)
+
+        """
+        :type dictionary: List[str]
+        :type sentence: str
+        :rtype: str
+        """
+        
