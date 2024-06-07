@@ -1,0 +1,27 @@
+
+class Solution(object):
+    def check(self,l, r):
+        if not l and not r:
+            return True
+        if not l or not r:                 
+            return False
+        if l.val != r.val:
+            return False
+        return True
+    def isSameTree(self, leftNode, rightNode):
+        
+
+        q = collections.deque([(leftNode, rightNode)])
+
+        while q:
+            size = len(q)
+            for i in range(size):
+                lNode,rNode = q.popleft()
+                if not self.check(lNode,rNode):
+                    return False
+                if lNode and rNode:
+                    q.append((lNode.left, rNode.left))
+                    q.append((lNode.right,rNode.right))
+
+        return True
+        
