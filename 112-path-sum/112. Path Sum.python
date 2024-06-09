@@ -8,10 +8,15 @@
 class Solution(object):
     def hasPathSum(self, root, targetSum):
         if not root:
-            return False
-        targetSum -= root.val
-        if not root.left and not root.right and targetSum == 0:
-            return True
-        
-        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right,targetSum)
-        
+            return False 
+        if root.left == None and root.right == None:
+            return root.val == targetSum
+        queue = deque([(root, root.val)])
+        while queue:
+            node, currSum = queue.popleft()
+            if currSum == targetSum and not node.left and not node.right:
+                return True
+            if node.left:
+                queue.append((node.left, currSum + node.left.val))
+            if node.right:
+                queue.append((node.right, currSum + node.right.val))
