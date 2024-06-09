@@ -1,0 +1,25 @@
+class NumArray(object):
+
+    def __init__(self, nums):
+        self.prefix_sum = [0] 
+        curr_sum = 0 
+        for i in range(len(nums)):
+            curr_sum += nums[i]
+            self.prefix_sum.append(curr_sum)
+        
+
+        
+
+    def sumRange(self, left, right):
+        return self.prefix_sum[right+1]-self.prefix_sum[left]
+        """
+        :type left: int
+        :type right: int
+        :rtype: int
+        """
+        
+
+
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(left,right)
