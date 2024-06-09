@@ -1,0 +1,15 @@
+class Solution(object):
+    def subarraysDivByK(self, nums, k):
+        prefix_sum = [0] * k # list to keep track of the counts of prefix sums modulo k
+        prefix_sum[0] = 1 # one prefix sum always initially 0
+        
+        count = 0
+        curr_sum = 0
+        
+        for i in range(len(nums)):
+            # Update current prefix sum with current element, handle negative values correctly
+            curr_sum = (curr_sum + nums[i] % k + k) % k
+            count += prefix_sum[curr_sum] # Add current prefix sum mod k has seen before to the count
+            prefix_sum[curr_sum] += 1 # Increment the count for this prefix sum modulo k
+        
+        return count
