@@ -1,0 +1,18 @@
+class Solution(object):
+    def intersection(self, nums1, nums2):
+        #brute force 
+
+        nums1 = set(nums1)
+        nums2 = set(nums2)
+        res = []
+        for num in nums2:
+            if num in nums1:
+                res.append(num)
+        
+        return res
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+        
