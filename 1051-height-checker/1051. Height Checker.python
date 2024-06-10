@@ -1,6 +1,20 @@
 class Solution(object):
+    def countingSort(self, array):
+        counts = defaultdict(int)
+        min_val, max_val = min(array), max(array)
+        for val in array:
+            counts[val] +=1
+        
+        index = 0 
+        for val in range(min_val, max_val + 1):
+            while counts[val] > 0:
+                array[index] = val
+                index +=1 
+                counts[val] -= 1
+
     def heightChecker(self, heights):
-        expected = sorted(heights)
+        expected = heights[:]
+        self.countingSort(expected)
         count = 0
         for i in range(len(heights)):
             if expected[i] != heights[i]:
