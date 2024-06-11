@@ -1,0 +1,21 @@
+class Solution(object):
+    def relativeSortArray(self, arr1, arr2):
+        res = []
+        arr1_map = defaultdict(int)
+        for num in arr1:
+            arr1_map[num] +=1
+        for num in arr2:
+            while num in arr1_map:
+                for i in range(arr1_map[num]):
+                    res.append(num)
+                del arr1_map[num]
+        
+        if arr1_map:
+            for num in sorted(arr1_map.keys()):
+                for i in range(arr1_map[num]):
+                    res.append(num)
+
+        return res
+        
+
+        
