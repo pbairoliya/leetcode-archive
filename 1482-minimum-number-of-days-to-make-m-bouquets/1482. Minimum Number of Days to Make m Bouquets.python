@@ -22,13 +22,11 @@ class Solution:
 
         start = 0
         end = max(bloomDay)
-        minDays = -1
 
         while start <= end:
             mid = (start + end) // 2
 
             if self.get_num_of_bouquets(bloomDay, mid, k) >= m:
-                minDays = mid
                 end = mid - 1
             else:
                 start = mid + 1
