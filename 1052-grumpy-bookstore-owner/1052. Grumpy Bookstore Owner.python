@@ -1,0 +1,33 @@
+class Solution(object):
+    def maxSatisfied(self, customers, grumpy, minutes):
+        n = len(customers)
+
+        total_sat = sum(customers[i] for i in range(n) if grumpy[i] == 0)
+        more_sat = 0 
+        current_sat = 0 
+        left = 0 
+
+        for right in range(minutes):
+            if grumpy[right]:
+                current_sat += customers[right]
+
+        more_sat += current_sat
+        print(more_sat)
+        for right in range(minutes,n):
+            if grumpy[right]:
+                #add right
+                current_sat += customers[right]
+            if grumpy[right-minutes]:
+                current_sat -= customers[right-minutes]
+            more_sat = max(more_sat, current_sat)
+        return total_sat + more_sat
+
+
+        
+        """
+        :type customers: List[int]
+        :type grumpy: List[int]
+        :type minutes: int
+        :rtype: int
+        """
+        
