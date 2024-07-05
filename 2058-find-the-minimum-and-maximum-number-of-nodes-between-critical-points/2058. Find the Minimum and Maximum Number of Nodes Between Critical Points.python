@@ -1,0 +1,42 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def nodesBetweenCriticalPoints(self, head):
+
+        result = [-1,-1]
+
+        min_dist = float("inf")
+        prev_node = head
+        curr_node = head.next
+        curr_idx = 1 
+        prev_crit_idx = 0
+        first_crit_idx = 0 
+
+        while curr_node.next:
+            if(curr_node.val < prev_node.val and curr_node.val < curr_node.next.val) or (curr_node.val > prev_node.val and curr_node.val > curr_node.next.val):
+                #if first crit point found
+                if prev_crit_idx == 0:
+                    prev_crit_idx = curr_idx
+                    first_crit_idx = curr_idx
+                else:
+                    min_dist = min(min_dist, curr_idx - prev_crit_idx)
+                    prev_crit_idx = curr_idx
+            
+            curr_idx += 1
+            prev_node = curr_node
+            curr_node = curr_node.next
+        
+        #if 2 critical points found
+        if min_dist != float("inf"):
+            max_dist = prev_crit_idx -first_crit_idx
+            result = [min_dist, max_dist]
+        
+        return result
+        """
+        :type head: Optional[ListNode]
+        :rtype: List[int]
+        """
+        
