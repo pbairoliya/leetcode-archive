@@ -1,0 +1,19 @@
+class Solution(object):
+    def averageWaitingTime(self, customers):
+        n = len(customers)
+        curr_time = 0 
+        total_time = 0.0 
+        for start, time in customers:
+            max_start = max(curr_time,start)
+            finish_time = max_start + time
+            curr_time = finish_time
+            total_time += finish_time-start
+
+
+        return total_time/n
+
+        """
+        :type customers: List[List[int]]
+        :rtype: float
+        """
+        
