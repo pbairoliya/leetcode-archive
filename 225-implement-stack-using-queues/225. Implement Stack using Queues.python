@@ -13,6 +13,8 @@ class MyStack(object):
         
 
     def pop(self):
+        if(self.empty()):
+            return -1
         for i in range(len(self.q)-1):
             self.q.append(self.q.popleft())
         
