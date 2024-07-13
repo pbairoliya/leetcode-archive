@@ -1,0 +1,26 @@
+class Solution(object):
+    def countStudents(self, students, sandwiches):
+        queue = deque(students)
+        sandwiches = deque(sandwiches)
+        not_loop = True
+        count = 0 
+        while queue and sandwiches and not_loop:
+            if queue[0] == sandwiches[0]:
+                count = 0 
+                queue.popleft()
+                sandwiches.popleft()
+            else:
+                queue.append(queue.popleft())
+                count +=1
+            
+            if count == len(queue):
+                not_loop = False
+        
+        return len(queue)
+            
+        """
+        :type students: List[int]
+        :type sandwiches: List[int]
+        :rtype: int
+        """
+        
