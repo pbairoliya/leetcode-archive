@@ -1,0 +1,27 @@
+class Solution(object):
+    def countSymmetricIntegers(self, low, high):
+        count = 0 
+
+        for i in range(low, high + 1):
+            num_str = str(i)
+            len(num_str)//2
+            str_sum = 0 
+            if len(num_str) % 2 !=0:
+                continue
+            for j in range(len(num_str)):
+                if j < len(num_str)//2:
+                    str_sum += int(num_str[j])
+                else:
+                    str_sum -= int(num_str[j])
+            
+            if str_sum == 0:
+                print(i)
+                count +=1
+        
+        return count
+        """
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        
