@@ -1,0 +1,35 @@
+class Solution(object):
+    def survivedRobotsHealths(self, positions, healths, directions):
+        n = len(positions)
+        indices = list(range(n))
+        res = []
+        stack = deque()
+
+        #sort index by pos
+        indices.sort(key = lambda x:positions[x])
+
+        for idx in indices:
+            #add the right moving robots to the stack
+            if directions[idx] == "R":
+                stack.append(idx)
+            else:
+                while stack and healths[idx] > 0:
+                    top_idx = stack.pop()
+
+                    if healths[top_idx] > healths[idx]:
+                        healths[top_idx] -= 1
+                        healths[idx] = 0 
+                        stack.append(top_idx)
+                    elif healths[top_idx] < healths[idx]:
+                        healths[top_idx] = 0 
+                        healths[idx] -= 1
+                    else:
+                        healths[idx] = 0 
+                        healths[top_idx] = 0 
+        for idx in range(n):
+            if healths[idx] > 0 :
+                res.append(healths[idx])
+            
+        return res
+        
+        
