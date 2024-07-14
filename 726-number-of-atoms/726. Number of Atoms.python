@@ -1,0 +1,58 @@
+class Solution(object):
+    def countOfAtoms(self, formula):
+        #stack of maps
+        stack = [defaultdict(int)]
+        index = 0 
+
+        while index< len(formula):
+            if formula[index] == "(":
+                stack.append(defaultdict(int))
+                index +=1
+            elif formula[index] == ")":
+                curr_map = stack.pop()
+                index += 1
+                multiplier = ""
+                while index < len(formula) and formula[index].isdigit():
+                    multiplier += formula[index]
+                    index += 1
+                
+                if multiplier:
+                    multiplier = int(multiplier) # convert it into an int
+                    for symb in curr_map:
+                        curr_map[symb] *= multiplier # multiply it out
+                for symb in curr_map:
+                    stack[-1][symb] += curr_map[symb] # add it to the top of the stack
+            else:
+                curr_symb = formula[index]
+                index += 1
+                while index < len(formula) and formula[index].islower():
+                    curr_symb += formula[index]
+                    index +=1
+                curr_count = ""
+                while index < len(formula) and formula[index].isdigit():
+                    curr_count += formula[index]
+                    index += 1
+                
+                if curr_count == "":
+                    stack[-1][curr_symb] += 1
+                else:
+                    stack[-1][curr_symb] += int(curr_count)
+
+        print(sorted(stack[0].items()))
+        ans = ""
+        for symb, count in sorted(stack[0].items()):
+            if count > 1:
+                ans += symb + str(count)
+            else:
+                ans += symb
+
+        return ans
+
+
+
+                
+        """
+        :type formula: str
+        :rtype: str
+        """
+        
