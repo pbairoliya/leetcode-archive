@@ -1,0 +1,20 @@
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        freq_map = defaultdict(int)
+
+        for num in nums:
+            freq_map[num] += 1
+
+        heap = []
+        for key in freq_map:
+            #want to push it based on teh frequency so it sorted
+            heapq.heappush(heap,[-freq_map[key],key])
+
+
+        sol_list = []
+        for _ in range(k):
+            item = heappop(heap)
+            # now only add the key itself
+            sol_list.append(item[1])
+        
+        return sol_list
