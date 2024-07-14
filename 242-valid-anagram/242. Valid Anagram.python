@@ -7,16 +7,11 @@ class Solution(object):
         mapT = defaultdict(int)
 
         for letter in s:
-            if letter in mapS:
-                mapS[letter] +=1
-            else:
-                mapS[letter] = 1
+            mapS[letter] += 1
         
         for letter in t:
-            if letter in mapT:
-                mapT[letter] +=1
-            else:
-                mapT[letter] = 1
+            mapT[letter] += 1
+            
         for key in mapS:
             if mapS[key] != mapT[key]:
                 return False
