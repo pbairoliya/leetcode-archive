@@ -1,11 +1,20 @@
 class Solution(object):
     def containsDuplicate(self, nums):
-        duplicateSet = set()
+        #initalize a hashset 
+        nums_set = set()
 
+        #loop through the set do greedy and break off if it is in thet set
         for num in nums:
-            if num not in duplicateSet:
-                duplicateSet.add(num)
-            else:
+            #use the set() as in oeperation is O(1)
+            if num in nums_set:
+                #if in the set then means duplicate
                 return True
+            
+            nums_set.add(num)
+        #end case gone through the loop meaning no duplicate
         return False
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
         
