@@ -1,12 +1,17 @@
 class Solution(object):
     def twoSum(self, nums, target):
+        #make a list of remainder seen
         num_map = defaultdict(int)
+        # use the enumerate function that allows you to see idx and 
+        # val in loop at the same time
 
         for idx, num in enumerate(nums):
+            # if the remainder has been seen in the map we have found our one and only solution
             if (target - num) in num_map:
                 return [num_map[target-num], idx]
+            # else add the seen value to the map
             num_map[num] = idx
-        
+        # error case return emtpy array signifying no target sum present
         return []
         """
         :type nums: List[int]
