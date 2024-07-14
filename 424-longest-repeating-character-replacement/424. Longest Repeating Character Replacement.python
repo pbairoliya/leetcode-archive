@@ -1,0 +1,19 @@
+class Solution(object):
+    def characterReplacement(self, s, k):
+        #sliding window + counter
+
+        left = 0 
+        max_substr = 0 
+        char_map = defaultdict(int)
+
+        for right in range(len(s)):
+            char_map[s[right]] += 1
+            #variating sliding window so while loop
+            #check if the window - max freq value has gone past k 
+            while (right-left + 1) - max(char_map.values()) > k:
+                #cut that out of the map from consideration (decrease window)
+                char_map[s[left]] -=1
+                left += 1
+            max_substr = max(max_substr, right-left + 1)
+        
+        return max(max_substr, right-left + 1) 
