@@ -1,0 +1,48 @@
+class SnakeGame(object):
+    
+    def __init__(self, width, height, food):
+        self.snake = collections.deque([(0,0)])    # snake head is at the front
+        self.snake_set = {(0,0) : 1}
+        self.width = width
+        self.height = height
+        self.food = food
+        self.food_index = 0
+        self.movement = {'U': [-1, 0], 'L': [0, -1], 'R': [0, 1], 'D': [1, 0]}
+        """
+        :type width: int
+        :type height: int
+        :type food: List[List[int]]
+        """
+        
+
+    def move(self, direction):
+        newHead = (self.snake[0][0] + self.movement[direction][0],
+                   self.snake[0][1] + self.movement[direction][1])
+                
+        #boundary check
+        out_of_bound_1 = newHead[0] < 0 or newHead[0] >= self.height
+        out_of_bound_2 = newHead[1] < 0 or newHead[1] >= self.width
+
+        # new head runs into its body and not the tail
+        bites_itself = newHead in self.snake_set and newHead != self.snake[-1]
+        
+        # if one true game ends
+        if out_of_bound_1 or out_of_bound_2 or bites_itself:
+            return -1
+        
+        #note the food list could be empty
+        next_food = self.food[self.food_index] if self.food_index < len(self.food) else None
+
+        # if food is there and snake is on it
+        if self.food_index < len(self.food) and next_food[0] == newHead[0] and next_food[1] == newHead[1]:
+            self.food_index += 1
+            #and dont delete tail
+        #delete the tail if not eating
+        else:
+            tail = self.snake.pop()
+            del self.snake_set[tail]
+        
+        self.snake.appendleft(newHead)
+        self.snake_set[newHead] = 1
+
+        return (len(self.snake) - 1)
