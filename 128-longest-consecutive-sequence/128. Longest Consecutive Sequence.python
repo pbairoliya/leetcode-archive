@@ -1,0 +1,13 @@
+class Solution(object):
+    def longestConsecutive(self, nums):
+        if len(nums) == 0 or len(nums) == 1:
+            return len(nums)
+        sortedNums = sorted(set(nums))
+        currMax = 1
+        left = 0 
+        right = 0
+        for right in range(1,len(sortedNums)):
+            if sortedNums[right] - sortedNums[right-1] != 1:
+                currMax = max(right-left,currMax)
+                left = right
+        return max(currMax, right-left+1)
