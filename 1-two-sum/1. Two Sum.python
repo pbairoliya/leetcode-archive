@@ -1,9 +1,16 @@
 class Solution(object):
     def twoSum(self, nums, target):
-        numMap = {}
-        for index, currentNum in enumerate(nums):
-            secondNum = target-currentNum
-            if secondNum in numMap:
-                index2 = numMap[secondNum]
-                return [index,index2]
-            numMap[currentNum] = index
+        num_map = defaultdict(int)
+
+        for idx, num in enumerate(nums):
+            if (target - num) in num_map:
+                return [num_map[target-num], idx]
+            num_map[num] = idx
+        
+        return []
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
