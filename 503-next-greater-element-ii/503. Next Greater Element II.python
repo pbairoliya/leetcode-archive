@@ -1,0 +1,16 @@
+class Solution(object):
+    def nextGreaterElements(self, nums):
+        stack = [] 
+        res = [-1] * len(nums)
+        for j in range(2):
+            for i,num in enumerate(nums):
+                while stack and stack[-1][0]<num:
+                    old_num, old_i = stack.pop()
+                    res[old_i] = num
+                stack.append((num,i))
+        return res
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        
