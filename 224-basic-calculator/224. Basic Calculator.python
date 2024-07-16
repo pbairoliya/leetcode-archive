@@ -9,9 +9,13 @@ class Solution(object):
             if ch.isdigit():
                 operand = (operand*10) + int(ch)
             
-            elif ch in  ["+","-"]:
+            elif ch == "+":
                 res += sign * operand
-                sign = [-1,1][ch == "+"]
+                sign = 1
+                operand = 0 
+            elif ch == "-":
+                res += sign * operand
+                sign = -1
                 operand = 0 
             
             elif ch == "(":
@@ -21,6 +25,7 @@ class Solution(object):
                 sign = 1
                 res = 0 
             elif ch == ")":
+
                 res += sign * operand
 
                 res *= stack.pop()
