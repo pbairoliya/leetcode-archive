@@ -1,0 +1,17 @@
+class Solution(object):
+    def maxOperations(self, nums, k):
+        num_map = defaultdict(int)
+        ans = 0
+        for num in nums:
+            if abs(k-num) in num_map and num_map[k-num] > 0:
+                ans += 1
+                num_map[k-num] -=1
+            else:
+                num_map[num] += 1
+        
+        return ans
+
+        
+
+
+        
