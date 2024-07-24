@@ -1,0 +1,21 @@
+class Solution(object):
+    def sortJumbled(self, mapping, nums):
+
+        store_pairs = []
+        for i in range(len(nums)):
+            str_num = str(nums[i])
+            str_map = ""
+            for l in str_num:
+                str_map += str(mapping[int(l)])
+            print(str_map)
+            mapped_val = int(str_map)
+            store_pairs.append((mapped_val,i))
+        
+        store_pairs.sort()
+        ans = []
+        for pair in store_pairs:
+            ans.append(nums[pair[1]])
+
+        return ans
+        
+        
