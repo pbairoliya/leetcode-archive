@@ -1,0 +1,28 @@
+class Solution(object):
+    def sortArray(self, nums):
+        def quick_sort(l,r):
+            if l >= r:
+                return
+            
+            pivot = nums[randint(l,r)]
+
+            less,greater,curr = l-1,r+1,l
+
+            while curr < greater:
+                if nums[curr] < pivot:
+                    less +=1
+                    nums[less],nums[curr] = nums[curr], nums[less]
+                    curr +=1 
+                elif nums[curr] > pivot:
+                    greater -=1
+                    nums[curr],nums[greater] = nums[greater],nums[curr]
+                else:
+                    curr +=1
+            
+            quick_sort(l,less)
+            quick_sort(greater,r)
+        
+        quick_sort(0,len(nums)-1)
+        return nums
+
+        
