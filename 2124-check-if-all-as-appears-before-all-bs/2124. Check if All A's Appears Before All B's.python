@@ -1,0 +1,17 @@
+class Solution(object):
+    def checkString(self, s):
+        max_a = -100
+        min_b = 100
+
+        for i in range(len(s)):
+            if s[i] == "a":
+                max_a = max(max_a,i)
+            else:
+                min_b = min(min_b,i)
+        
+        return min_b > max_a
+        """
+        :type s: str
+        :rtype: bool
+        """
+        
