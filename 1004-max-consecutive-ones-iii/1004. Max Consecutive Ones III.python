@@ -8,7 +8,7 @@ class Solution(object):
             if num == 0:
                 currK-=1
             if currK < 0:
-                if nums[start] ==0:
+                if nums[start] == 0:
                     currK+=1
                 start +=1
         
