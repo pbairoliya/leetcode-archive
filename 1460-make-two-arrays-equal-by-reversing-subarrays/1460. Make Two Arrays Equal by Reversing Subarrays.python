@@ -1,0 +1,22 @@
+class Solution(object):
+    def canBeEqual(self, target, arr):
+        target_map = defaultdict(int)
+        arr_map = defaultdict(int)
+
+        for num in target:
+            target_map[num] += 1
+        
+        for num in arr:
+            arr_map[num] += 1
+        
+        for num in arr:
+            if arr_map[num] != target_map[num]:
+                return False
+        
+        return True
+        """
+        :type target: List[int]
+        :type arr: List[int]
+        :rtype: bool
+        """
+        
